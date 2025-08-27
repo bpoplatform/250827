@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조회 기능 테스트</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 상단 메뉴 버튼 -->
+        <div class="menu-bar">
+            <button type="button" id="btnNew" class="menu-btn">신규</button>
+            <button type="button" id="btnQuery" class="menu-btn">조회</button>
+            <button type="button" id="btnSave" class="menu-btn">저장</button>
+            <button type="button" id="btnExcel" class="menu-btn">엑셀저장</button>
+            <button type="button" id="btnDelete" class="menu-btn">삭제</button>
+        </div>
+
+        <!-- 법인정보 섹션 -->
+        <div class="section">
+            <h3>법인정보</h3>
+            <div class="form-group">
+                <table class="info-table">
+                    <tr>
+                        <td class="label">법인명</td>
+                        <td><input type="text" id="companyName" class="input-field" maxlength="100" placeholder="법인명을 입력하세요" value="삼성전자 주식회사"></td>
+                        <td class="label">법인등록번호</td>
+                        <td><input type="text" id="registrationNumber" class="input-field" maxlength="13" placeholder="법인등록번호를 입력하세요"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 사업연도등록 섹션 -->
+        <div class="section">
+            <h3>사업연도등록</h3>
+            <div class="grid-container">
+                <table class="grid-table" id="fiscalYearGrid">
+                    <thead>
+                        <tr>
+                            <th>사업연도</th>
+                            <th>시작일</th>
+                            <th>종료일</th>
+                            <th>사업연도여부</th>
+                            <th>비고</th>
+                            <th>선택</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fiscalYearTableBody">
+                        <!-- 동적으로 생성될 행들 -->
+                    </tbody>
+                </table>
+                
+                <!-- 새 행 추가 버튼 -->
+                <div class="grid-controls">
+                    <button type="button" id="btnAddRow" class="control-btn">행 추가</button>
+                    <button type="button" id="btnRemoveRow" class="control-btn">선택행 삭제</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메시지 표시 영역 -->
+        <div id="messageArea" class="message-area" style="display: none;"></div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // 페이지 로드 후 자동으로 조회 테스트 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('조회 테스트 페이지 로드 완료');
+            
+            // 3초 후 조회 버튼 클릭
+            setTimeout(() => {
+                console.log('조회 테스트 시작: 삼성전자 주식회사');
+                const queryButton = document.getElementById('btnQuery');
+                if (queryButton && window.app) {
+                    queryButton.click();
+                } else {
+                    console.error('조회 버튼 또는 앱 인스턴스를 찾을 수 없습니다');
+                    console.log('queryButton:', queryButton);
+                    console.log('window.app:', window.app);
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

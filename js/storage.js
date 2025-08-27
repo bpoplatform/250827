@@ -198,22 +198,52 @@ class DataStorage {
             for (let fy of fiscalYears) {
                 if (excludeId && fy.FY_ID === excludeId) continue;
                 
-                const existingStart = new Date(fy.START_DATE);
-                const existingEnd = new Date(fy.END_DATE);
-                const newStart = new Date(startDate);
-                const newEnd = new Date(endDate);
+                // YYYYMMDD 형식을 Date 객체로 변환
+                const existingStart = this.parseDate(fy.START_DATE);
+                const existingEnd = this.parseDate(fy.END_DATE);
+                const newStart = this.parseDate(startDate);
+                const newEnd = this.parseDate(endDate);
                 
-                // 날짜 겹침 검사
-                if ((newStart <= existingEnd && newEnd >= existingStart)) {
-                    return true;
+                // 유효하지 않은 날짜는 건너뛰기
+                if (!existingStart || !existingEnd || !newStart || !newEnd) {
+                    continue;
+                }
+                
+                // 날짜 겹침 검사: (newStart <= existingEnd) && (newEnd >= existingStart)
+                if (newStart <= existingEnd && newEnd >= existingStart) {
+                    return {
+                        isOverlap: true,
+                        conflictFiscalYear: fy.FISCAL_YEAR,
+                        conflictPeriod: `${fy.START_DATE}~${fy.END_DATE}`
+                    };
                 }
             }
             
-            return false;
+            return { isOverlap: false };
         } catch (error) {
             console.error('날짜 겹침 검사 오류:', error);
-            return false;
+            return { isOverlap: false };
         }
+    }
+
+    // YYYYMMDD 문자열을 Date 객체로 변환
+    parseDate(dateString) {
+        if (!dateString || dateString.length !== 8) return null;
+        
+        const year = parseInt(dateString.substr(0, 4));
+        const month = parseInt(dateString.substr(4, 2)) - 1; // 월은 0부터 시작
+        const day = parseInt(dateString.substr(6, 2));
+        
+        const date = new Date(year, month, day);
+        
+        // 유효한 날짜인지 확인
+        if (date.getFullYear() !== year || 
+            date.getMonth() !== month || 
+            date.getDate() !== day) {
+            return null;
+        }
+        
+        return date;
     }
 
     // 데이터 내보내기 (Excel용)

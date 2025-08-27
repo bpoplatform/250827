@@ -229,7 +229,8 @@ class CorporateManagementApp {
     addFiscalYearRow(data = null) {
         const tbody = document.getElementById('fiscalYearTableBody');
         const row = document.createElement('tr');
-        row.setAttribute('data-row-id', this.fiscalYearRowCounter++);
+        const rowId = `row_${this.fiscalYearRowCounter++}`;
+        row.setAttribute('data-row-id', rowId);
         
         const fiscalYearId = data ? data.FY_ID : '';
         const fiscalYear = data ? data.FISCAL_YEAR : '';
@@ -255,6 +256,11 @@ class CorporateManagementApp {
         // 행 선택 이벤트 바인딩
         const selector = row.querySelector('.row-selector');
         selector.addEventListener('change', (e) => this.onRowSelectionChange(e, row));
+
+        // 새로 추가된 행에 유효성 검증 이벤트 바인딩 (이미 tbody 레벨에서 이벤트 위임으로 처리됨)
+        // validationHelper.setupFiscalYearGridValidation() 에서 처리됨
+        
+        return row;
     }
 
     // 선택된 행 삭제
