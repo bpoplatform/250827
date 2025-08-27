@@ -1,0 +1,249 @@
+/* 전체 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Malgun Gothic', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* 메뉴 바 */
+.menu-bar {
+    background-color: #e8e8e8;
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+.menu-btn {
+    background-color: #f8f8f8;
+    border: 1px solid #999;
+    padding: 5px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 2px;
+    transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.menu-btn:active {
+    background-color: #d0d0d0;
+}
+
+/* 섹션 스타일 */
+.section {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.section h3 {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+/* 법인정보 테이블 */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table td {
+    padding: 5px 8px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.info-table .label {
+    background-color: #f8f8f8;
+    width: 120px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    font-size: 11px;
+    height: 22px;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background-color: #f0f8ff;
+}
+
+/* 그리드 컨테이너 */
+.grid-container {
+    padding: 10px;
+}
+
+.grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.grid-table th,
+.grid-table td {
+    border: 1px solid #ddd;
+    padding: 5px 8px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.grid-table th {
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+    height: 25px;
+}
+
+.grid-table td {
+    height: 25px;
+    vertical-align: middle;
+}
+
+.grid-table input[type="text"] {
+    width: 100%;
+    border: none;
+    padding: 2px 4px;
+    font-size: 11px;
+    background-color: transparent;
+    text-align: center;
+}
+
+.grid-table input[type="text"]:focus {
+    background-color: #f0f8ff;
+    outline: 1px solid #4a90e2;
+}
+
+.grid-table input[type="checkbox"] {
+    transform: scale(0.8);
+}
+
+.grid-table select {
+    width: 100%;
+    border: none;
+    padding: 2px;
+    font-size: 11px;
+    background-color: transparent;
+}
+
+/* 그리드 컨트롤 */
+.grid-controls {
+    text-align: left;
+    margin-top: 5px;
+}
+
+.control-btn {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    margin-right: 5px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 2px;
+}
+
+.control-btn:hover {
+    background-color: #e8e8e8;
+}
+
+/* 메시지 영역 */
+.message-area {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.message-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.message-error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.message-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+    
+    .info-table .label {
+        width: 100px;
+        font-size: 10px;
+    }
+    
+    .menu-btn,
+    .control-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .grid-table th,
+    .grid-table td {
+        padding: 3px 5px;
+        font-size: 10px;
+    }
+}
+
+/* 선택된 행 하이라이트 */
+.grid-table tr.selected {
+    background-color: #e3f2fd;
+}
+
+/* 필수 입력 필드 표시 */
+.required {
+    background-color: #fff8e1 !important;
+}
+
+/* 유효성 검증 에러 */
+.validation-error {
+    background-color: #ffebee !important;
+    border-color: #f44336 !important;
+}
